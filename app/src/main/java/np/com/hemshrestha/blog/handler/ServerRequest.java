@@ -20,7 +20,11 @@ public class ServerRequest {
         ConnectivityManager cm = (ConnectivityManager) ctx.getSystemService(Context.CONNECTIVITY_SERVICE);
         return cm.getActiveNetworkInfo() != null;
     }
-
+    /*
+    Permission required
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    */
 
     private static String getUrlEncodeData(HashMap<String, String> params) {
         if (params == null) {

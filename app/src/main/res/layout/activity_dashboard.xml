@@ -92,7 +92,7 @@
         android:layout_height="wrap_content">
 
         <LinearLayout
-            android:id="@+id/server"
+            android:id="@+id/ll_server"
             android:layout_width="match_parent"
             android:layout_weight="1"
             android:gravity="center"

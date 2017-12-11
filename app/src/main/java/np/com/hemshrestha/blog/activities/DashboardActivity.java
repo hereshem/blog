@@ -8,6 +8,10 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import np.com.hemshrestha.blog.R;
 import np.com.hemshrestha.blog.handler.ServerRequest;
 
@@ -26,56 +30,75 @@ public class DashboardActivity extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(DashboardActivity.this, "login clicked", Toast.LENGTH_SHORT).show();
-
+                toast("login clicked");
                 startActivity(new Intent(DashboardActivity.this, MainActivity.class));
             }
         });
         findViewById(R.id.ll_list_blog).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(DashboardActivity.this, "List clicked", Toast.LENGTH_SHORT).show();
-
+                toast("List clicked");
                 startActivity(new Intent(DashboardActivity.this, BlogListActivity.class));
             }
         });
-        findViewById(R.id.ll_list_blog).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.ll_server).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(DashboardActivity.this, "Server clicked", Toast.LENGTH_SHORT).show();
+                toast("Server clicked");
 
-                //startActivity(new Intent(DashboardActivity.this, BlogListActivity.class));
                 asyncCall();
-                //String response = ServerRequest.httpGetData("http://google.com");
+//                String response = ServerRequest.httpGetData("http://google.com");
+//                toast("Response = " + response);
 
             }
         });
     }
 
+    private void toast(String s) {
+        Toast.makeText(this, s, Toast.LENGTH_SHORT).show();
+    }
+
     void asyncCall() {
 
-        AsyncTask task = new AsyncTask<Void, Void, String>() {
+        new AsyncTask<Void, Void, String>(){
             @Override
             protected String doInBackground(Void... params) {
-                String response = ServerRequest.httpGetData("http://google.com");
-                //Toast.makeText(DashboardActivity.this, "Reponse = " + response, Toast.LENGTH_SHORT).show();
-                return response;
+                return  ServerRequest.httpGetData("http://gdg.hem.info.np/index.php?action=api");
             }
 
             @Override
             protected void onPostExecute(String s) {
                 super.onPostExecute(s);
-                // render view
-                Toast.makeText(DashboardActivity.this, "Reponse = " + s, Toast.LENGTH_SHORT).show();
+                toast("Response = " + s);
+                parseJSON(s);
             }
 
-            @Override
-            protected void onPreExecute() {
-                super.onPreExecute();
-            }
-        };
+        }.execute();
+    }
 
-        task.execute();
+    private void parseJSON(String s) {
+        toast("parse block");
+
+        try {
+            JSONObject main = new JSONObject(s);
+            String name = main.getString("name");
+            toast("Name is " + name);
+            JSONArray data = main.getJSONArray("data");
+
+            for (int i = 0; i < data.length(); i++) {
+                JSONObject jObj = data.getJSONObject(i);
+                String n = jObj.getString("name");
+                toast("Internal Name = "+ n);
+            }
+
+
+
+
+
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 
 }
