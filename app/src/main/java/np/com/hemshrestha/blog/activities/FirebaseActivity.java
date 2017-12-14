@@ -2,6 +2,7 @@ package np.com.hemshrestha.blog.activities;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -35,10 +36,11 @@ public class FirebaseActivity extends AppCompatActivity {
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
 
-        mDatabase.child("mydata").child("data").addListenerForSingleValueEvent(new ValueEventListener() {
+        mDatabase.child("mydata").child("data").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 String data = dataSnapshot.getValue(String.class);
+                Log.i("data", data);
                 tv.setText(data);
             }
 
