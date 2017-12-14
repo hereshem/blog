@@ -41,6 +41,20 @@ public class DashboardActivity extends AppCompatActivity {
                 startActivity(new Intent(DashboardActivity.this, BlogListActivity.class));
             }
         });
+        findViewById(R.id.ll_fragment).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                toast("Fragment clicked");
+                openActivity(TabActivity.class);
+            }
+        });
+        findViewById(R.id.ll_firebase).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                toast("Firebase clicked");
+                openActivity(FirebaseActivity.class);
+            }
+        });
         findViewById(R.id.ll_server).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -52,6 +66,10 @@ public class DashboardActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    private void openActivity(Class myclass) {
+        startActivity(new Intent(this, myclass));
     }
 
     private void toast(String s) {

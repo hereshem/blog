@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "932345520174",
+    "firebase_url": "https://blog-ff25d.firebaseio.com",
+    "project_id": "blog-ff25d",
+    "storage_bucket": "blog-ff25d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:932345520174:android:10da475e9e9744c0",
+        "android_client_info": {
+          "package_name": "np.com.hemshrestha.blog"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "932345520174-eoa7tfle63fvm45h6uuca3a3sdmj3r3a.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC-cHP1Ym-QToirnZP6qcFw9x301_8p_Hc"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

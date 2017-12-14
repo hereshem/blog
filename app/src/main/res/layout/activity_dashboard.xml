@@ -32,14 +32,22 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/ll_firebase"
             android:layout_width="match_parent"
             android:layout_weight="1"
             android:gravity="center"
+            android:layout_margin="10dp"
+            android:orientation="vertical"
+            android:background="@drawable/selector"
             android:layout_height="match_parent">
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@mipmap/ic_launcher"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Firebase"/>
         </LinearLayout>
 
     </LinearLayout>
@@ -112,14 +120,22 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/ll_fragment"
             android:layout_width="match_parent"
             android:layout_weight="1"
             android:gravity="center"
+            android:orientation="vertical"
+            android:background="@drawable/selector"
+            android:layout_margin="8dp"
             android:layout_height="match_parent">
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@mipmap/ic_launcher"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Fragment"/>
         </LinearLayout>
 
     </LinearLayout>
