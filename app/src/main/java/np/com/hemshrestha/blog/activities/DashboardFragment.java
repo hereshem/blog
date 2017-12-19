@@ -3,9 +3,13 @@ package np.com.hemshrestha.blog.activities;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -17,61 +21,59 @@ import np.com.hemshrestha.blog.R;
 import np.com.hemshrestha.blog.handler.ServerRequest;
 
 
-public class DashboardActivity extends AppCompatActivity {
+public class DashboardFragment extends Fragment {
 
     LinearLayout login;
 
-
+    @Nullable
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.sidebar, menu);
-        return true;
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.activity_dashboard, container, false);
     }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_dashboard);
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        //setContentView(R.layout.activity_dashboard);
 
-        login = (LinearLayout) findViewById(R.id.ll_login);
+        login = (LinearLayout) getView().findViewById(R.id.ll_login);
 
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 toast("login clicked");
-                startActivity(new Intent(DashboardActivity.this, MainActivity.class));
+                startActivity(new Intent(getActivity(), MainActivity.class));
             }
         });
-        findViewById(R.id.ll_list_blog).setOnClickListener(new View.OnClickListener() {
+        getView().findViewById(R.id.ll_list_blog).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 toast("List clicked");
-                startActivity(new Intent(DashboardActivity.this, BlogListActivity.class));
+                startActivity(new Intent(getActivity(), BlogListActivity.class));
             }
         });
-        findViewById(R.id.ll_fragment).setOnClickListener(new View.OnClickListener() {
+        getView().findViewById(R.id.ll_fragment).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 toast("Fragment clicked");
                 openActivity(TabActivity.class);
             }
         });
-        findViewById(R.id.ll_sidebar).setOnClickListener(new View.OnClickListener() {
+        getView().findViewById(R.id.ll_sidebar).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 toast("Fragment clicked");
                 openActivity(SidebarActivity.class);
             }
         });
-        findViewById(R.id.ll_firebase).setOnClickListener(new View.OnClickListener() {
+        getView().findViewById(R.id.ll_firebase).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 toast("Firebase clicked");
                 openActivity(FirebaseActivity.class);
             }
         });
-        findViewById(R.id.ll_server).setOnClickListener(new View.OnClickListener() {
+        getView().findViewById(R.id.ll_server).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 toast("Server clicked");
@@ -88,11 +90,11 @@ public class DashboardActivity extends AppCompatActivity {
     }
 
     private void openActivity(Class myclass) {
-        startActivity(new Intent(this, myclass));
+        startActivity(new Intent(getActivity(), myclass));
     }
 
     private void toast(String s) {
-        Toast.makeText(this, s, Toast.LENGTH_SHORT).show();
+        Toast.makeText(getActivity(), s, Toast.LENGTH_SHORT).show();
     }
 
     void asyncCall() {
